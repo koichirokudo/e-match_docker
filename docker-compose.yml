@@ -1,0 +1,37 @@
+version: '3.9'
+
+volumes:
+  db-store:
+  php-socket:
+
+services:
+  web:
+    build: ./infra/nginx
+    volumes:
+      - php-socket:/var/run/php-fpm
+      - ./src:/var/www
+    ports:
+      - 8080:80
+    depends_on:
+      - app
+  app:
+    build: ./infra/php
+    volumes:
+      - php-socket:/var/run/php-fpm
+      - ./src:/var/www
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    build: ./infra/postgresql
+    volumes:
+      - ./infra/postgresql/init:/docker-entrypoint-initdb.d/
+      - ./infra/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  mailhog:
+    build: ./infra/mailhog
+    ports:
+      - 8025:8025
+      - 1025:1025
