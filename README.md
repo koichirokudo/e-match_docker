@@ -4,9 +4,14 @@ PHPおよびCakePHPの自己学習のために2019年頃に開発。<br />
 現在はWeb公開はしていない。<br />
 E-sportsで共に戦っていく仲間を探すことができるマッチングサイト。<br />
 
-1. [e-match_app](https://github.com/koichirokudo/e-match_app)をsrcディレクトリを作成してその下に配置する。
-2. docker-compose up -d
-3. docker-compose exec app bash
-4. composer install
-5. bin/cake migrations migrate
-6. localhost:8080 にブラウザでアクセスする
+# 開発環境構築手順
+
+1. 本リポジトリをcloneする
+1. ターミナルで e-match_docker に cd する
+1. e-match_docker配下で[e-match_app](https://github.com/koichirokudo/e-match_app)をcloneする
+1. mv e-match_app src : cloneしたディレクトリ e-match_app から src にリネーム
+1. docker-compose up -d
+1. docker-compose exec app bash
+1. composer install
+1. bin/cake migrations migrate
+1. localhost:8080 にブラウザでアクセスする
