@@ -1,2 +1,2 @@
-/src/*
-/infra/postgresql/data/
+./src/*
+./infra/postgresql/data/
